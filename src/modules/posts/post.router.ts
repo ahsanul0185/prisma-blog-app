@@ -7,6 +7,8 @@ const router = express.Router();
 
 router.get("/", PostController.getAllPosts);
 
+router.get("/:id", PostController.getPostById);
+
 router.post(
   "/create",
   auth(UserRole.ADMIN, UserRole.USER),
