@@ -1,8 +1,9 @@
 import express from 'express'
-import { postRouter } from './modules/posts/post.router';
 import { toNodeHandler } from "better-auth/node";
-import { auth } from './lib/auth';
 import cors from 'cors'
+import { auth } from './lib/auth';
+import { postRouter } from './modules/posts/post.router';
+import { commentRouter } from './modules/comment/comment.router';
 
 const app = express();
 
@@ -15,6 +16,7 @@ app.all('/api/auth/{*any}', toNodeHandler(auth));
 
 app.use(express.json())
 app.use("/posts", postRouter)
+app.use("/comments", commentRouter)
 
 app.get("/", (req, res) => {
     res.send("Hello, World")
